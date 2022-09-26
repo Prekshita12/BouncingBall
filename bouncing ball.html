@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: blueviolet;
+        }
+        .canvas{
+            border: 2px solid black;
+            position: relative;
+            top: 6rem;
+            left: 33rem;
+            background-color: aquamarine;
+        }
+        h1{
+            font-size: 40px;
+            position: relative;
+            text-align: center;
+           top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bouncing ball</h1>
+    <canvas class="canvas" width="500px" height="500px">   bouncing ball </canvas>
+    <script>
+        
+        let canvas=document.querySelector(".canvas")
+        let ctx=canvas.getContext("2d")
+        let ball={x:0,y:40}
+        let speed=0;
+        let speed1=0;
+        function drawBall(){
+            ctx.beginPath();
+            ctx.arc(0,0,50,0,Math.PI*2)
+            ctx.fillStyle = c;
+            ctx.fill()
+        }
+        function draw(){
+            ctx.save()
+            ctx.clearRect(0,0,500,500)
+           ball.x+=5
+            ball.y+=2
+            if(ball.x>460 ){
+            speed=-10
+            c='rgb(29, 84, 188)' 
+            }
+            else if(ball.x<40){
+                speed=+2
+                c=' rgb(135, 150, 48)';
+            }
+            else if(ball.y>460){
+                speed1=-8
+                c=' rgb(214, 14, 94)';
+            }
+            else if(ball.y<40){
+             speed1=+2
+             c=' rgb(214, 14, 94)';
+            }
+            
+            ball.x=ball.x+speed;
+            ball.y=ball.y+speed1;
+
+           
+            ctx.translate(ball.x,ball.y)
+            drawBall()
+            ctx.restore()
+            requestAnimationFrame(draw)
+        }
+        draw()
+    </script>
+</body>
+</html>
